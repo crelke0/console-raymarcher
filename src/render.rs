@@ -55,6 +55,6 @@ pub mod render {
       }
       output.push('\n');
     }
-    print!("{}", output);
+    println!("{}", output);
   }
 }
