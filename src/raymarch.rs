@@ -89,7 +89,7 @@ pub mod raymarch {
     }
   }
 
-  pub fn raymarch(ray_o: Vec3D, ray_d: Vec3D, objects: &[impl Raymarchable], max_steps: i32, smallest_step: f32) -> Option<Hit> {
+  pub fn raymarch(ray_o: Vec3D, ray_d: Vec3D, objects: &[&dyn Raymarchable], max_steps: i32, smallest_step: f32) -> Option<Hit> {
     let mut pos = ray_o;
     for _ in 0..max_steps {
       let option_closest_info = objects

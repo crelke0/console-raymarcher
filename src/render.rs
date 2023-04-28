@@ -22,7 +22,7 @@ pub mod render {
     }
   }
   
-  pub fn render(objects: &[impl Raymarchable], camera: &Camera, light: &Vec3D, width: u16, height: u16, sub_pixel_sample: u8, font_aspect: f32, max_steps: i32, smallest_step: f32) {
+  pub fn render(objects: &[&dyn Raymarchable], camera: &Camera, light: &Vec3D, width: u16, height: u16, sub_pixel_sample: u8, font_aspect: f32, max_steps: i32, smallest_step: f32) {
     let gradient: Vec<_> = String::from(" .:-=+*#%@").chars().collect();
     let length = (width*height).into();
     let mut output = String::with_capacity(length);
