@@ -37,6 +37,15 @@ pub mod vector {
         self.x*rhs.y - self.y*rhs.x
       )
     }
+    pub fn abs(&self) -> Vec3D {
+      Vec3D::new(self.x.abs(), self.y.abs(), self.z.abs())
+    }
+    pub fn max_component(&self) -> f32 {
+      self.x.max(self.y).max(self.z)
+    }
+    pub fn max(&self, rhs: &Vec3D) -> Vec3D {
+      Vec3D::new(self.x.max(rhs.x), self.y.max(rhs.y), self.z.max(rhs.z))
+    }
   }
   impl ops::Add<Vec3D> for Vec3D {
     type Output = Self;
