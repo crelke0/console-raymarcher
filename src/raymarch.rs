@@ -69,6 +69,26 @@ pub mod raymarch {
       return q.length() - self.r2;
     }
   }
+
+  pub struct Box {
+    pub pos: Vec3D,
+    pub dim: Vec3D
+  }
+  impl Box {
+    pub fn new(pos: Vec3D, dim: Vec3D) -> Box {
+      Box {
+        pos: pos,
+        dim: dim
+      }
+    }
+  }
+  impl Raymarchable for Box {
+    fn sdf(&self, pos: &Vec3D) -> f32 {
+      let d = (*pos - self.pos).abs() - self.dim;
+      d.max(&Vec3D::new(0.0, 0.0, 0.0)).length() + d.max_component().min(0.0)
+    }
+  }
+
   pub fn raymarch(ray_o: Vec3D, ray_d: Vec3D, objects: &[impl Raymarchable], max_steps: i32, smallest_step: f32) -> Option<Hit> {
     let mut pos = ray_o;
     for _ in 0..max_steps {
