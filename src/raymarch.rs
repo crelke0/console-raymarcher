@@ -70,19 +70,19 @@ pub mod raymarch {
     }
   }
 
-  pub struct Box {
+  pub struct Cuboid {
     pub pos: Vec3D,
     pub dim: Vec3D
   }
-  impl Box {
-    pub fn new(pos: Vec3D, dim: Vec3D) -> Box {
-      Box {
+  impl Cuboid {
+    pub fn new(pos: Vec3D, dim: Vec3D) -> Cuboid {
+      Cuboid {
         pos: pos,
         dim: dim
       }
     }
   }
-  impl Raymarchable for Box {
+  impl Raymarchable for Cuboid {
     fn sdf(&self, pos: &Vec3D) -> f32 {
       let d = (*pos - self.pos).abs() - self.dim;
       d.max(&Vec3D::new(0.0, 0.0, 0.0)).length() + d.max_component().min(0.0)
